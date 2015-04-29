@@ -1,0 +1,119 @@
+/* 
+    Document   : buttons
+    Created on : 26.4.2012, 16:30:38
+    Author     : Jakub
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+.menu a {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #ffffff;
+	padding: 8px 20px;
+	background: -moz-linear-gradient(
+		top,
+		#dbdbdb 0%,
+		#c4c4c4);
+	background: -webkit-gradient(
+		linear, left top, left bottom, 
+		from(#dbdbdb),		
+		to(#c4c4c4));
+	border-radius: 21px;
+	-moz-border-radius: 21px;
+	-webkit-border-radius: 21px;
+	border: 1px solid #adadad;
+	-webkit-box-shadow:
+		0px 1px 3px rgba(000,000,000,0.5),
+		inset 0px 0px 2px rgba(255,255,255,0);
+	text-shadow:
+		1px -1px 0px rgba(000,000,000,0.1),
+		1px 1px 0px rgba(000,000,000,0.4);
+}
+
+.menu a:hover {
+	color: #000000;
+	background: -moz-linear-gradient(
+		top,
+		#ebebeb 0%,
+		#e6e6e6 21%,
+		#ffffff 50%,
+		#ffffff 75%,
+		#d6d6d6);
+	background: -webkit-gradient(
+		linear, left top, left bottom, 
+		from(#ebebeb),
+		color-stop(0.21, #e6e6e6),
+		color-stop(0.50, #ffffff),
+		color-stop(0.75, #ffffff),
+		to(#d6d6d6));
+	border: 1px solid #000000;
+	-moz-box-shadow:
+		0px 1px 3px rgba(000,000,000,0.5),
+		inset 0px 0px 2px rgba(255,255,255,0);
+	-webkit-box-shadow:
+		0px 1px 3px rgba(000,000,000,0.5),
+		inset 0px 0px 2px rgba(255,255,255,0);
+	text-shadow:
+		1px -1px 0px rgba(191,191,191,0.1),
+		1px 1px 0px rgba(082,082,082,0.4);
+}
+
+.menu a.current {
+	color: #ffffff;
+        background: -moz-linear-gradient(
+		top,
+		#92b2d1 0%,
+		#6ba0d1 20%,
+		#3483d2 50%,
+		#6fa3d4 75%,
+		#b2daff);
+	background: -webkit-gradient(
+		linear, left top, left bottom, 
+		from(#92b2d1),
+		color-stop(0.20, #6ba0d1),
+		color-stop(0.50, #3483d2),
+		color-stop(0.75, #6fa3d4),
+		to(#b2daff));
+	border: 1px solid #000000;
+	-moz-box-shadow:
+		0px 1px 3px rgba(000,000,000,0.5),
+		inset 0px 0px 2px rgba(255,255,255,0);
+	-webkit-box-shadow:
+		0px 1px 3px rgba(000,000,000,0.5),
+		inset 0px 0px 2px rgba(255,255,255,0);
+	text-shadow:
+		1px -1px 0px rgba(092,092,092,0.4),
+		0px 1px 0px rgba(000,000,000,0.3);
+}
+
+.menu a.current:hover {
+	background: -moz-linear-gradient(
+		top,
+		#6f859c 0%,
+		#3e5975 20%,
+		#0c2f52 50%,
+		#34597d 75%,
+		#4472a1);
+	background: -webkit-gradient(
+		linear, left top, left bottom, 
+		from(#6f859c),
+		color-stop(0.20, #3e5975),
+		color-stop(0.50, #0c2f52),
+		color-stop(0.75, #34597d),
+		to(#4472a1));
+	border: 1px solid #000000;
+	-moz-box-shadow:
+		0px 1px 3px rgba(000,000,000,0.5),
+		inset 0px 0px 2px rgba(255,255,255,0);
+	-webkit-box-shadow:
+		0px 1px 3px rgba(000,000,000,0.5),
+		inset 0px 0px 2px rgba(255,255,255,0);
+	text-shadow:
+		1px -1px 0px rgba(092,092,092,0.4),
+		0px 1px 0px rgba(000,000,000,0.3);
+}

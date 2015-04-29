@@ -1,0 +1,117 @@
+{**
+ * My Application layout template.
+ *
+ * @param string   $basePath web base path
+ * @param string   $robots   tell robots how to index the content of a page (optional)
+ * @param array    $flashes  flash messages
+ *}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+	<meta name="description" content="Ernisto - Emergency NIS">
+	<meta name="robots" content="{$robots}" n:ifset="$robots">
+
+	<title>Ernisto</title>
+
+        <link rel="shortcut icon" href="{$basePath}/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" media="screen,projection,tv" href="{$basePath}/css/screen.css" type="text/css">
+        <link rel="stylesheet" media="screen,projection,tv" href="{$basePath}/css/buttons.css" type="text/css">
+	<link rel="stylesheet" media="print" href="{$basePath}/css/print.css" type="text/css">
+	
+	<link type="text/css" href="{$basePath}/css/cupertino/jquery-ui.custom.css" rel="stylesheet" />
+        <link type="text/css" href="{$basePath}/css/chosen.css" rel="stylesheet" media="screen" >
+
+        <script type="text/javascript" src="{$basePath}/js/jquery.min.js"></script>
+        <script type="text/javascript" src="{$basePath}/js/netteForms.js"></script>
+        <script type="text/javascript" src="{$basePath}/js/jquery.nette.js"></script>
+        <script type="text/javascript" src="{$basePath}/js/jquery.ajaxform.js"></script>        
+        <script type="text/javascript" src="{$basePath}/js/jquery-ui.custom.min.js"></script>
+        <script type="text/javascript" src="{$basePath}/js/jquery.ui.datepicker-cs.js"></script>
+        <script type="text/javascript" src="{$basePath}/js/jquery.chosen.min.js"></script>
+        <script type="text/javascript" src="{$basePath}/js/ernisto.js"></script>
+        {block head}{/block}
+</head>
+
+<body>
+
+<header>
+    <a href="{$baseUri}" title="ERNisTo"><span>ERNisTo</span></a>
+    <div id="adress">
+    <p>Nemocnice Jablonec nad Nisou, p.o.</p>
+    <p>Chirurgická ambulance</p>
+    <p>Nemocniční 15, Jablonec nad Nisou, 46660</p>
+    </div>
+</header>
+
+<div id="banner">
+    <span><a n:href="Sign:out">odhlásit</a></span>
+    <h1>{include #header}</h1>
+</div>
+
+<div id="menu">
+{include #menuright}
+{include #menuleft}
+</div>
+
+<div id="content">
+<div n:foreach="$flashes as $flash" class="flash {$flash->type}">{$flash->message}</div>    
+
+{include #content}
+
+<footer>PHP {=PHP_VERSION} | {ifset $_SERVER['SERVER_SOFTWARE']}Server {$_SERVER['SERVER_SOFTWARE']}{/ifset} | Nette Framework {=Nette\Framework::VERSION}</footer>
+</div>
+
+</body>
+</html>
+
+{define menuleft}
+    <ul class="menu" id="menu-left">
+        <li><a {ifCurrent Cekarna:*}class="current"{/ifCurrent} n:href="Cekarna:view">Čekárna</a></li> 
+        <li><a {ifCurrent Pacient:*}class="current"{/ifCurrent} n:href="Pacient:default">Pacient</a></li> 
+        <li><a {ifCurrent Navsteva:*}class="current"{/ifCurrent} n:href="Navsteva:default">Návštěva</a></li> 
+    </ul>
+{/define}
+
+{define dialog}
+
+{snippet navstevaForm}
+{if isset($showNavstevaForm) or $presenter['navstevaForm']->hasErrors()}
+<script type="text/javascript">
+$(function(){
+    $('#frmnavstevaForm-datum').datepicker();
+                    
+    $("#frmnavstevaForm-pacient_name").autocomplete({
+        source: {link Pacient:autocompletepacient},
+        minLength: 3,
+        select: function(event,ui) {
+            $('#frmnavstevaForm-pacient_id').attr('value',ui.item.id);
+        }
+    }) 
+    $("#snippet--navstevaForm").dialog({ modal: true, width: 500, title: "Návštěva" });
+
+    $('#frmnavstevaForm-pracoviste_id').chosen();
+    $('#frmnavstevaForm-oddeleni_id').chosen();
+});                        
+</script>
+{control navstevaForm}
+{/if}
+{/snippet}
+
+
+{snippet pacientForm}
+{if isset($showPacientForm) or $presenter['pacientForm']->hasErrors()}
+<script type="text/javascript">
+$(function(){
+    $("#snippet--pacientForm").dialog({ modal: true, width: 600, title: "Pacient" });
+    $('#frmpacientForm-pojistovna_id').chosen();
+    $('#frmpacientForm-rodiny_stav_id').chosen();
+});                        
+</script>   
+{control pacientForm}
+{/if}
+{/snippet}
+
+{/define}

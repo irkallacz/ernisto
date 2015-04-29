@@ -1,0 +1,267 @@
+{block header}Pacient{/block}
+
+{define menuright}
+    <ul class="menu" id="menu-right">
+        <li><a class="current" n:href="Pacient:">Hledání</a></li> 
+        <li><a class="ajax" n:href="addNavsteva!, $id">Nová návštěva</a></li> 
+        <li><a class="ajax" n:href="addPacient!">Nový pacient</a></li> 
+    </ul>
+{/define}
+
+{block head}
+<style type="text/css" syntax="off">
+.pacient { font-size: 250%; padding: 20px 0px; }
+.ui-widget-content a { color: #006AEB }
+h3 a { text-decoration: none;}
+#search input { font-size: 22px; border: 1px solid #666666; border-radius: 10px; color: #666666;}
+#search { border: 1px solid #E6E6E6; background: #F0F0F0; border-radius: 30px; padding: 5px; text-align: center; margin: 1em 0px;}
+#frm-pacientSearchForm-pacient { padding: 2px 0px 2px 40px; background: white url('{$basePath}/images/search.gif') 5px center no-repeat;}
+#sex { line-height: 16px; font-size: 26px; font-weight: bold;}
+.male { color: #006AEB;}
+.female { color: coral;}
+</style> 
+<script src="{$basePath}/js/jquery.ui.datepicker-cs"></script>
+<script type="text/javascript"> 
+$(function() {
+    $("#tabs").tabs();
+})
+</script>        
+{/block}
+
+{block content}
+    
+<h2 class="float-right pacient">{$pacient->id}</h2>
+
+<h2 id="jmeno" class="pacient">
+    <img src="{$basePath}/images/{$pacient->pohlavi ? 'female' : 'male'}.png">
+    {$pacient->titul_pred}
+    {$pacient->prijmeni} 
+    {$pacient->jmeno}
+    {$pacient->titul_za}
+</h2>
+
+<div id="tabs">
+    <ul>
+        <li><a href="#tabs-1">Základní údaje</a></li>
+        <li><a href="#tabs-2">Návštěvy</a></li>
+        <li><a href="#tabs-3">Zdrav. údaje</a></li>
+        <li><a href="#tabs-4">Diagnozy</a></li>
+        <li><a href="#tabs-5">Terapie</a></li>
+        <li><a href="#tabs-6">Laboratoř</a></li>
+    </ul>
+    <div id="tabs-1">
+        <div class="float-right">
+            <a class="not ajax" title="Editovat pacienta" n:href="editPacient!, $pacient->id"><img src="{$basePath}/images/edit.png" /></a>
+            <a class="not ajax" title="Vymazat pacienta" n:href="deletePacient, $pacient->id"><img src="{$basePath}/images/delete.png" /></a> 
+        </div>  
+        
+        <table id="pacient_jmeno" class="tabulka">
+          <tr><th></th><th>Titul před</th><th>Příjmení</th><th>Jméno</th><th>Titul za</th><th>Rodinný stav</th></tr>
+          <tr>
+              <td n:class = "$pacient->pohlavi ? female : male" id="sex">{$pacient->pohlavi ? '♀' : '♂'}</td>
+              <td>{$pacient->titul_pred}</td>
+              <td>{$pacient->prijmeni}</td>
+              <td>{$pacient->jmeno}</th>
+              <td>{$pacient->titul_za}</td>
+              <td>{$pacient->rodiny_stav->nazev}</td>
+          </tr>
+        </table>
+        
+        <table id="pacient" class="tabulka">
+          <tr><th>Rodné číslo</th><th>Datum narození</th><th>Věk</th><th>Pojišťovna</th></tr>
+          <tr>
+              <td>{$pacient->id}</td>
+              <td>{$pacient->born_date|date:'d m.Y'}</td>
+              <td>{$pacient->vek}</td>
+              <td>{$pacient->pojistovna->nazev} ({$pacient->pojistovna_id})</td>
+          </tr>
+        </table>
+        <h3>Adresa</h3>
+        <table id="adresa" class="tabulka">
+          <tr><th>Ulice</th><th>Číslo ulice</th><th>Město</th><th>PSČ</th></tr>
+          <tr>
+              <td>{$pacient->ulice}</td>
+              <td>{$pacient->cp}</td>
+              <td>{$pacient->mesto}</th>
+              <td>{$pacient->psc}</td>
+          </tr>
+        </table>
+        
+    </div>
+    
+    <div id="tabs-2">
+      <table id="navsteva" class="tabulka">
+          <tr><th>Datum</th><th>Pracoviště</th><th>Oddělení</th><th>Číslo místnosti</th></tr>
+          {foreach $navstevy as $navsteva}
+            <tr n:class="$iterator->even ? even">
+              <td><a n:href="Navsteva:view, $navsteva->id">{$navsteva->datum|date:'d.m.Y H:i'}</a></td>
+              <td>{$navsteva->pracoviste->nazev}</td>
+              <td>{$navsteva->oddeleni->nazev}</td>
+              <td>{$navsteva->cislo_mistnosti}</td>
+            </tr>
+          {/foreach}
+      </table>
+    </div>
+    <div id="tabs-3">
+    {if (isset($info['vyska']))}  
+        <h3>Výška</h3>
+        <table id="vyska" class="tabulka">
+            <tr><th>Datum</th><th>Hodnota</th></tr>
+            {foreach $info['vyska'] as $navsteva_id => $node}
+            <tr n:class="$iterator->even ? even">
+                <td><a n:href="Navsteva:view, $navsteva_id">{$node['datum']->format('d.m.Y H:i')}</a></td>
+                <td>{$node['value']} cm</td>
+            </tr>
+            {/foreach}
+        </table>
+    {/if}
+        
+    {if (isset($info['vaha']))}  
+        <h3>Váha</h3>
+        <table id="vaha" class="tabulka">
+            <tr><th>Datum</th><th>Hodnota</th></tr>
+            {foreach $info['vaha'] as $navsteva_id => $node}
+            <tr n:class="$iterator->even ? even">
+                <td><a n:href="Navsteva:view, $navsteva_id">{$node['datum']->format('d.m.Y H:i')}</a></td>
+                <td>{$node['value']} kg</td>
+            </tr>
+            {/foreach}
+        </table>
+    {/if}
+        
+    {if (isset($info['alergie']))}  
+        <h3>Alergie</h3>
+        <table id="alergie" class="tabulka">
+            <tr><th>Datum</th><th>Hodnota</th></tr>
+            {foreach $info['alergie'] as $navsteva_id => $node}
+            <tr n:class="$iterator->even ? even">
+                <td><a n:href="Navsteva:view, $navsteva_id">{$node['datum']->format('d.m.Y H:i')}</a></td>
+                <td>{$node['value']}</td>
+            </tr>
+            {/foreach}
+        </table>
+    {/if}
+        
+    {if (isset($info['koureni']))}  
+        <h3>Kouření</h3>
+        <table id="alergie" class="tabulka">
+            <tr><th>Datum</th><th>Hodnota</th></tr>
+            {foreach $info['koureni'] as $navsteva_id => $node}
+            <tr n:class="$iterator->even ? even">
+                <td><a n:href="Navsteva:view, $navsteva_id">{$node['datum']->format('d.m.Y H:i')}</a></td>
+                <td>{$node['value']}</td>
+            </tr>
+            {/foreach}
+        </table>
+    {/if}          
+
+        
+    {if (isset($info['tlak']))}  
+        <h3>Tlak</h3>
+        <table id="tlak" class="tabulka">
+            <tr><th>Datum</th><th>Hodnota</th></tr>
+            {foreach $info['tlak'] as $navsteva_id => $node}
+            <tr n:class="$iterator->even ? even">
+                <td><a n:href="Navsteva:view, $navsteva_id">{$node['datum']->format('d.m.Y H:i')}</a></td>
+                <td>{$node['value']}</td>
+            </tr>
+            {/foreach}
+        </table>
+    {/if} 
+    
+    {if (isset($info['tep']))}  
+        <h3>Tep</h3>
+        <table id="tep" class="tabulka">
+            <tr><th>Datum</th><th>Hodnota</th></tr>
+            {foreach $info['tep'] as $navsteva_id => $node}
+            <tr n:class="$iterator->even ? even">
+                <td><a n:href="Navsteva:view, $navsteva_id">{$node['datum']->format('d.m.Y H:i')}</a></td>
+                <td>{$node['value']}</td>
+            </tr>
+            {/foreach}
+        </table>
+    {/if}
+        
+    {if (isset($info['teplota']))}  
+        <h3>Teplota</h3>
+        <table id="teplota" class="tabulka">
+            <tr><th>Datum</th><th>Hodnota</th></tr>
+            {foreach $info['teplota'] as $navsteva_id => $node}
+            <tr n:class="$iterator->even ? even">
+                <td><a n:href="Navsteva:view, $navsteva_id">{$node['datum']->format('d.m.Y H:i')}</a></td>
+                <td>{$node['value']}</td>
+            </tr>
+            {/foreach}
+        </table>
+    {/if}    
+
+    {if (isset($info['tehotenstvi']))}  
+        <h3>Těhotenstvi</h3>
+        <table id="tehotenstvi" class="tabulka">
+            <tr><th>Datum</th><th>Hodnota</th></tr>
+            {foreach $info['tehotenstvi'] as $navsteva_id => $node}
+            <tr n:class="$iterator->even ? even">
+                <td><a n:href="Navsteva:view, $navsteva_id">{$node['datum']->format('d.m.Y H:i')}</a></td>
+                <td>{$node['value']}</td>
+            </tr>
+            {/foreach}
+        </table>
+    {/if}    
+        
+    </div>
+    <div id="tabs-4">
+      {foreach $navstevy as $navsteva}
+        {if}
+        {var $diagnoza = 0}
+        <h3><a n:href="Navsteva:view, $navsteva->id">{$navsteva->datum|date:'%A, %d.%m.%Y. %H:%M'}</a></h3>
+        <table id="diagnozy" class="tabulka">
+        <tr><th>Diagnoza</th><th>Přístroj</th><th>Materiál</th><th>Komentář</th></tr>        
+        {foreach $navsteva->related('diagnoza') as $diagnoza}
+          <tr n:class="$iterator->even ? even">
+              <td>{$diagnoza->mkn10->nazev}</td>
+              <td>{$diagnoza->pristroj}</td>
+              <td>{$diagnoza->material}</td>
+              <td>{!$diagnoza->komentar|escape|nl2br}</td>
+          </tr>      
+          {/foreach}
+          </table>
+        {/if $diagnoza}
+      {/foreach}          
+    </div>
+    <div id="tabs-5">
+      {foreach $navstevy as $navsteva}
+        {if}
+        {var $terapie = 0}
+        <h3><a n:href="Navsteva:view, $navsteva->id">{$navsteva->datum|date:'%A, %d.%m.%Y. %H:%M'}</a></h3>
+        <table id="diagnozy" class="tabulka">
+        <tr><th>Terapie</th><th>Léčivo</th><th>Přístroj</th><th>Materiál</th><th>Komentář</th></tr>        
+        {foreach $navsteva->related('terapie') as $terapie}
+          <tr n:class="$iterator->even ? even">
+              <td>{$terapie->terapie}</td>
+              <td>{$terapie->lecivo}</td>
+              <td>{$terapie->pristroj}</td>
+              <td>{$terapie->material}</td>
+              <td>{!$terapie->komentar|escape|nl2br}</td>
+          </tr>      
+          {/foreach}
+          </table>
+        {/if $terapie}
+      {/foreach}          
+    </div>
+    <div id="tabs-6">
+      {foreach $navstevy as $navsteva}
+        {if}
+        {var $laborator = 0}
+        <h3><a n:href="Navsteva:view, $navsteva->id">{$navsteva->datum|date:'%A, %d.%m.%Y. %H:%M'}</a></h3>
+        {foreach $navsteva->related('laborator') as $laborator}
+        <p>{!$laborator->vysledky|escape|nl2br}</p>
+        {/foreach}
+        {/if $laborator}
+      {/foreach}
+    </div>
+</div>
+
+
+
+{include #dialog}
+{/block}

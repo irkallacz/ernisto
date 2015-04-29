@@ -1,0 +1,68 @@
+{block header}Čekárna{/block}
+
+{define menuright}
+    <ul class="menu" id="menu-right">
+        <li><a class="current" n:href="Cekarna:view">Prohlížení</a></li> 
+        <li><a class="ajax" n:href="addNavsteva!">Nová návštěva</a></li> 
+        <li><a class="ajax" n:href="addPacient!">Nový pacinet</a></li> 
+    </ul>
+{/define}
+
+{block head}
+<style type="text/css" n:syntax="off">
+#cekarna {width: 70%; text-align: center;}
+
+#kalendar {float: right; text-align: center}
+#datum {text-align: center; font-size: 19px; width: 260px; border:1px solid #e6e6e6; color:#333; background:#dbdbdb;}
+
+#navsteva-dialog {display: none}
+</style> 
+<script type="text/javascript">
+ $(function(){
+    $("#datum").datepicker({
+     onSelect: function(dateText, inst) {
+       window.location = $('#kalendar-form').attr('action') +'/'+ $.datepicker.formatDate('yy-mm-dd',$("#datum").datepicker('getDate'))
+      }   
+    });
+    
+    $("#datum").datepicker('show');
+});
+
+</script>        
+{/block}
+
+{block content}
+
+<h2>Dobrý den <b>Administrátore</b>. Dnes je {$now|date:'d. m. Y'}</h2>
+
+<div id="kalendar">
+    <form id="kalendar-form" action="{link Cekarna:view}" method="get">
+        <input type="date" value="{$datum|date:'d.m.Y'}" id="datum" readonly="readonly" />
+    </form>
+</div>
+
+<table class="tabulka" id="cekarna">
+    <tr><th></th><th>Čas</th><th>Pacient</th><th>RČ</th><th>Místnost</th></tr>    
+{foreach $navstevy as $navsteva}
+    {var $pacient = $navsteva->ref('pacient')}
+    <tr n:class="$iterator->even ? even">
+        <td>
+            <a class="not ajax" title="Editovat" n:href="editNavsteva!, $navsteva->id"><img src="{$basePath}/images/edit.png" /></a> 
+            <a class="not" title="Vymazat" n:href="deleteNavsteva, $navsteva->id"><img src="{$basePath}/images/delete.png" /></a>
+        </td>
+        <td><a n:href="Navsteva:view, $navsteva->id">{$navsteva->datum|date:'H:i'}</a></td>
+        <td class="left"><a n:href="Pacient:view, $pacient->id">
+            {$pacient->titul_pred}
+            {$pacient->prijmeni} 
+            {$pacient->jmeno}
+            {$pacient->titul_za}
+            </a>
+        </td>
+        <td>{$pacient->id}</td>
+        <td>{$navsteva->cislo_mistnosti}</td>
+    </tr>
+{/foreach}
+</table>
+
+{include #dialog}
+{/block}

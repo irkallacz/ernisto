@@ -1,0 +1,54 @@
+#
+# SECURITY WARNING: it is CRITICAL that this file & directory are NOT accessible directly via a web browser!
+#
+# If you don't protect this directory from direct web access, anybody will be able to see your passwords.
+# http://nette.org/security-warning
+#
+common:
+    parameters:
+        database:
+            driver: mysql
+            host: localhost
+            dbname: ernisto
+            user: root
+            password:
+ 
+    nette:
+        database:  
+            default:  
+                dsn: '%database.driver%:host=%database.host%;dbname=%database.dbname%'
+                user: %database.user%        
+                password: %database.password%
+                debugger: true
+                explain: false
+                reflection: conventional #discovered
+    
+        session:
+            expiration: '+ 14 days'
+    
+    php:
+        date.timezone: Europe/Prague        
+        iconv.internal_encoding: "UTF-8"
+        mbstring.internal_encoding: "UTF-8"
+        session.save_path: "%tempDir%/sessions"
+        zlib.output_compression: yes
+	
+    services:
+        database: @nette.database.default
+        
+        authenticator: 
+            class: Nette\Security\SimpleAuthenticator
+            arguments: [[
+                admin: a6m33li
+            ]]
+
+        model:
+            class: Model
+            arguments: [@database]
+
+  factories:
+
+
+production < common:
+
+development < common:

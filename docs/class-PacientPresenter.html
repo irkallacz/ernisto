@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.6.1" />
+
+	<title>Class PacientPresenter | ErNISTo</title>
+
+	<script type="text/javascript" src="resources/combined.js?144019575"></script>
+	<script type="text/javascript" src="elementlist.js?3389213968"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?1532301413" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li class="active"><a href="namespace-None.html">None</a>
+						</li>
+				<li><a href="namespace-PHP.html">PHP</a>
+						</li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-BasePresenter.html">BasePresenter</a></li>
+				<li><a href="class-CekarnaPresenter.html">CekarnaPresenter</a></li>
+				<li><a href="class-ErrorPresenter.html">ErrorPresenter</a></li>
+				<li><a href="class-Model.html">Model</a></li>
+				<li><a href="class-NavstevaPresenter.html">NavstevaPresenter</a></li>
+				<li class="active"><a href="class-PacientPresenter.html">PacientPresenter</a></li>
+				<li><a href="class-SignPresenter.html">SignPresenter</a></li>
+			</ul>
+
+
+
+
+
+			<h3>Functions</h3>
+			<ul>
+				<li><a href="function-callback.html">callback</a></li>
+				<li><a href="function-dump.html">dump</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-None.html" title="Summary of None"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class PacientPresenter</h1>
+
+
+	<div class="description">
+	
+<p>Presenter Pacienta. Má na starost ipředevším vyktreslování inforamcí a
+také mazání a vyhledávání pacienta.</p>
+
+	</div>
+
+	<dl class="tree">
+		<dd style="padding-left:0px">
+Nette\Object
+			
+			
+		</dd>
+		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by" />
+Nette\ComponentModel\Component
+			 implements 
+<span>Nette\ComponentModel\IComponent</span>
+			
+			
+		</dd>
+		<dd style="padding-left:60px">
+			<img src="resources/inherit.png" alt="Extended by" />
+Nette\ComponentModel\Container
+			 implements 
+<span>Nette\ComponentModel\IContainer</span>
+			
+			
+		</dd>
+		<dd style="padding-left:90px">
+			<img src="resources/inherit.png" alt="Extended by" />
+Nette\Application\UI\PresenterComponent
+			 implements 
+<span>Nette\Application\UI\ISignalReceiver</span>, 
+			
+<span>Nette\Application\UI\IStatePersistent</span>, 
+			
+				<a href="class-ArrayAccess.html"><span>ArrayAccess</span></a>
+			
+			
+		</dd>
+		<dd style="padding-left:120px">
+			<img src="resources/inherit.png" alt="Extended by" />
+Nette\Application\UI\Control
+			 implements 
+<span>Nette\Application\UI\IRenderable</span>
+			
+			
+		</dd>
+		<dd style="padding-left:150px">
+			<img src="resources/inherit.png" alt="Extended by" />
+Nette\Application\UI\Presenter
+			 implements 
+<span>Nette\Application\IPresenter</span>
+			
+			
+		</dd>
+		<dd style="padding-left:180px">
+			<img src="resources/inherit.png" alt="Extended by" />
+			<a href="class-BasePresenter.html"><span>BasePresenter</span></a>
+			
+			
+			
+		</dd>
+		<dd style="padding-left:210px">
+			<img src="resources/inherit.png" alt="Extended by" />
+<b><span>PacientPresenter</span></b>			
+			
+			
+		</dd>
+	</dl>
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		
+		
+
+				<b>Author:</b>
+				Jakub Mottl<br />
+		<b>Located at</b> <a href="source-class-PacientPresenter.html#10" title="Go to source code">presenters/PacientPresenter.php</a><br />
+	</div>
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="renderView" id="_renderView">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_renderView">#</a>
+		<code><a href="source-class-PacientPresenter.html#17" title="Go to source code">renderView</a>( <span>integer <var>$id</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Vykreslí pacienta podle ID, pokud není předáno, přesměruje na
+vyhledávání. Z modelu si natáhne potřebné informace, dopočítá datum
+narození, věk a seskupí zdravotní informace z jednotlivých návštěv k
+sobě.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Vykreslí pacienta podle ID, pokud není předáno, přesměruje na
+vyhledávání. Z modelu si natáhne potřebné informace, dopočítá datum
+narození, věk a seskupí zdravotní informace z jednotlivých návštěv k
+sobě.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>integer</code><br>ID pacienta</dd>
+				</dl></div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="actionDeletePacient" id="_actionDeletePacient">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_actionDeletePacient">#</a>
+		<code><a href="source-class-PacientPresenter.html#68" title="Go to source code">actionDeletePacient</a>( <span>integer <var>$id</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Smaže pacienta, vypíše zprávu a přesměruje na vyhledávání.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Smaže pacienta, vypíše zprávu a přesměruje na vyhledávání.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>integer</code><br>ID pacienta</dd>
+				</dl></div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="actionAutocompletePacient" id="_actionAutocompletePacient">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_actionAutocompletePacient">#</a>
+		<code><a href="source-class-PacientPresenter.html#79" title="Go to source code">actionAutocompletePacient</a>( <span>string <var>$term</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Vyhledávání pacienta. Předá vyvledávaný termín do modelu a vrácené
+řádky s pacienta předá do šablony</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Vyhledávání pacienta. Předá vyvledávaný termín do modelu a vrácené
+řádky s pacienta předá do šablony</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$term</var></dt>
+					<dd><code>string</code><br>hledaný termín</dd>
+				</dl></div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="actionSearchPacient" id="_actionSearchPacient">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_actionSearchPacient">#</a>
+		<code><a href="source-class-PacientPresenter.html#88" title="Go to source code">actionSearchPacient</a>( <span>string <var>$term</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Vyhledávání pacienta. Předá vyvledávaný termín do modelu a vrácené
+řádky s pacienta předá do šablony</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Vyhledávání pacienta. Předá vyvledávaný termín do modelu a vrácené
+řádky s pacienta předá do šablony</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$term</var></dt>
+					<dd><code>string</code><br>hledaný termín</dd>
+				</dl></div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-BasePresenter.html#methods">BasePresenter</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-BasePresenter.html#_actionDeleteNavsteva">actionDeleteNavsteva()</a>, 
+			<a href="class-BasePresenter.html#_createComponentNavstevaForm">createComponentNavstevaForm()</a>, 
+			<a href="class-BasePresenter.html#_createComponentPacientForm">createComponentPacientForm()</a>, 
+			<a href="class-BasePresenter.html#_handleAddNavsteva">handleAddNavsteva()</a>, 
+			<a href="class-BasePresenter.html#_handleAddPacient">handleAddPacient()</a>, 
+			<a href="class-BasePresenter.html#_handleEditNavsteva">handleEditNavsteva()</a>, 
+			<a href="class-BasePresenter.html#_handleEditPacient">handleEditPacient()</a>, 
+			<a href="class-BasePresenter.html#_startup">startup()</a>, 
+			<a href="class-BasePresenter.html#_submitNavstevaForm">submitNavstevaForm()</a>, 
+			<a href="class-BasePresenter.html#_submitPacientForm">submitPacientForm()</a>
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary inherited">
+	<caption>Methods inherited from Nette\Application\UI\Presenter</caption>
+	<tr>
+		<td><code>
+__construct(), 
+afterRender(), 
+backlink(), 
+beforeRender(), 
+canonicalize(), 
+changeAction(), 
+checkRequirements(), 
+createRequest(), 
+error(), 
+findLayoutTemplateFile(), 
+formatActionMethod(), 
+formatLayoutTemplateFiles(), 
+formatRenderMethod(), 
+formatTemplateFiles(), 
+forward(), 
+getAction(), 
+getApplication(), 
+getContext(), 
+getFlashSession(), 
+getHttpContext(), 
+getHttpRequest(), 
+getHttpResponse(), 
+getLastCreatedRequest(), 
+getLastCreatedRequestFlag(), 
+getLayout(), 
+getPayload(), 
+getPersistentComponents(), 
+getPresenter(), 
+getRequest(), 
+<span class="deprecated">getService()</span>, 
+getSession(), 
+getSignal(), 
+getUniqueId(), 
+getUser(), 
+getView(), 
+handleInvalidLink(), 
+hasFlashSession(), 
+isAjax(), 
+isSignalReceiver(), 
+<span class="deprecated">lastModified()</span>, 
+popGlobalParameters(), 
+processSignal(), 
+<span class="deprecated">redirectUri()</span>, 
+redirectUrl(), 
+restoreRequest(), 
+run(), 
+saveGlobalState(), 
+sendPayload(), 
+sendResponse(), 
+sendTemplate(), 
+setLayout(), 
+setView(), 
+shutdown(), 
+storeRequest(), 
+terminate()
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary inherited">
+	<caption>Methods inherited from Nette\Application\UI\Control</caption>
+	<tr>
+		<td><code>
+createTemplate(), 
+flashMessage(), 
+getSnippetId(), 
+getTemplate(), 
+getWidget(), 
+invalidateControl(), 
+isControlInvalid(), 
+templatePrepareFilters(), 
+validateControl()
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary inherited">
+	<caption>Methods inherited from Nette\Application\UI\PresenterComponent</caption>
+	<tr>
+		<td><code>
+attached(), 
+formatSignalMethod(), 
+<span class="deprecated">getParam()</span>, 
+<span class="deprecated">getParamId()</span>, 
+getParameter(), 
+getParameterId(), 
+getPersistentParams(), 
+getReflection(), 
+isLinkCurrent(), 
+lazyLink(), 
+link(), 
+loadState(), 
+offsetExists(), 
+offsetGet(), 
+offsetSet(), 
+offsetUnset(), 
+redirect(), 
+saveState(), 
+signalReceived(), 
+tryCall()
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary inherited">
+	<caption>Methods inherited from Nette\ComponentModel\Container</caption>
+	<tr>
+		<td><code>
+__clone(), 
+_isCloning(), 
+addComponent(), 
+createComponent(), 
+getComponent(), 
+getComponents(), 
+removeComponent(), 
+validateChildComponent()
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary inherited">
+	<caption>Methods inherited from Nette\ComponentModel\Component</caption>
+	<tr>
+		<td><code>
+__sleep(), 
+__wakeup(), 
+detached(), 
+getName(), 
+getParent(), 
+lookup(), 
+lookupPath(), 
+monitor(), 
+setParent(), 
+unmonitor(), 
+validateParent()
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary inherited">
+	<caption>Methods inherited from Nette\Object</caption>
+	<tr>
+		<td><code>
+__call(), 
+__callStatic(), 
+__get(), 
+__isset(), 
+__set(), 
+__unset(), 
+extensionMethod()
+		</code></td>
+	</tr>
+	</table>
+
+
+
+
+	<table class="summary inherited">
+	<caption>Constants inherited from Nette\Application\UI\Presenter</caption>
+	<tr>
+		<td><code>
+<b>ACTION_KEY</b>, 
+<b>DEFAULT_ACTION</b>, 
+<b>FLASH_KEY</b>, 
+<b>INVALID_LINK_EXCEPTION</b>, 
+<b>INVALID_LINK_SILENT</b>, 
+<b>INVALID_LINK_WARNING</b>, 
+<b>SIGNAL_KEY</b>
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary inherited">
+	<caption>Constants inherited from Nette\ComponentModel\IComponent</caption>
+	<tr>
+		<td><code>
+<b>NAME_SEPARATOR</b>
+		</code></td>
+	</tr>
+	</table>
+
+
+
+	<table class="summary inherited">
+	<caption>Properties inherited from Nette\Application\UI\Presenter</caption>
+	<tr>
+		<td><code>
+<var>$absoluteUrls</var>, 
+<var>$autoCanonicalize</var>, 
+<var>$invalidLinkMode</var>, 
+<var>$onShutdown</var>
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary inherited">
+	<caption>Properties inherited from Nette\Application\UI\Control</caption>
+	<tr>
+		<td><code>
+<var>$snippetMode</var>
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary inherited">
+	<caption>Properties inherited from Nette\Application\UI\PresenterComponent</caption>
+	<tr>
+		<td><code>
+<var>$params</var>
+		</code></td>
+	</tr>
+	</table>
+
+
+</div>
+
+	<div id="footer">
+		ErNISTo API documentation generated by <a href="http://apigen.org">ApiGen 2.6.1</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

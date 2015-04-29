@@ -1,0 +1,7 @@
+[{foreach $list as $node}{l}
+"id":"{$node->id}",
+"value":"{$node->datum->format('d.m.Y. H:i')} {$node->pacient->titul_pred} {$node->pacient->prijmeni} {$node->pacient->jmeno} {$node->pacient->titul_za}",
+"datum":"{$node->datum->format('d.m.Y. H:i')}",
+"pacient":"{$node->pacient->titul_pred} {$node->pacient->prijmeni} {$node->pacient->jmeno} {$node->pacient->titul_za} ({$node->pacient->id})",
+"pracoviste":"{$node->pracoviste->nazev}, {$node->oddeleni->nazev}, místnost {$node->cislo_mistnosti}"
+{r}{sep},{/sep}{/foreach}]

@@ -1,0 +1,55 @@
+{block header}Pacient{/block}
+
+{define menuright}
+    <ul class="menu" id="menu-right">
+        <li><a class="current" n:href="Pacient:">Hledání</a></li> 
+        <li><a class="ajax" n:href="addNavsteva!">Nová návštěva</a></li>
+        <li><a class="ajax" n:href="addPacient!">Nový pacient</a></li> 
+    </ul>
+{/define}
+
+{block head}
+<style type="text/css" syntax="off">
+#search input { font-size: 22px; border: 1px solid #666666; border-radius: 10px; color: #666666;}
+#search { border: 1px solid #E6E6E6; border-radius: 30px; padding: 5px; text-align: center; margin: 1em 0px;}
+#search img { vertical-align: middle; margin-right: 15px;}
+#pacient { padding: 2px 0px 2px 40px; background: white url('{$basePath}/images/search.gif') 5px center no-repeat;}
+input.ui-autocomplete-loading { background: white url('{$basePath}/images/spinner.gif') 7px center no-repeat !important;}
+</style> 
+<script type="text/javascript"> 
+$(function() {
+     $("#pacient").autocomplete({
+            source: {link searchpacient},
+            minLength: 3,
+            select: function(event,ui) {
+                $('#pacient_id').attr('value',ui.item.id);
+                window.location = $('#pacient-search-form').attr('action') +'view/'+ ui.item.id;
+            }
+       })
+       .data( "autocomplete" )._renderItem = function( ul, item ) {
+			return $( "<li></li>" )
+				.data( "item.autocomplete", item )
+				.append( "<a>" + item.name + "<br>" + item.adresa + "<br> Pojišťovna: " + item.pojistovna + "</a>" )
+				.appendTo(ul);
+		}; 
+    })
+</script>        
+{/block}
+
+{block content}
+
+<div id="search">
+    <form action="{link Pacient:view}" id="pacient-search-form">
+    <div>
+        <img src="{$basePath}/images/male.png">
+        <input id="pacient" type="text" size="65" placeholder="napište alespoň 3 znaky">
+        <input type="submit" value="OK"> 
+        <input type="hidden" id="pacient_id" name="id" value="">
+    </div>
+</form>
+</div>
+
+<p>Hledat je možno podle jména, příjmení, rodného čísla, adresy nebo čísla pojišťovny.</p>
+
+{include #dialog}
+{/block}

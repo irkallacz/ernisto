@@ -1,0 +1,7 @@
+[{foreach $list as $node}{l}
+"id":"{$node->id}",
+"value":"{$node->prijmeni} {$node->jmeno}",
+"name":"{$node->titul_pred} {$node->prijmeni} {$node->jmeno} {$node->titul_za}",
+"pracoviste":"{$node->pracoviste->nazev}, {$node->oddeleni->nazev}",
+"odbornost":"{$node->odbornost->nazev}"
+{r}{sep},{/sep}{/foreach}]

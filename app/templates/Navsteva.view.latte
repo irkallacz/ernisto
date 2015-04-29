@@ -1,0 +1,201 @@
+{block header}Návštěva{/block}
+
+{define menuright}
+    <ul class="menu" id="menu-right">
+        <li><a class="current" n:href="Navsteva:">Hledání</a></li> 
+        <li><a class="ajax" n:href="addDiagnoza!">Nová diagnoza</a></li> 
+        <li><a class="ajax" n:href="addTerapie!">Nová terapie</a></li>
+        <li><a class="ajax" n:href="addInfo!, $id">Zdrav. Info</a></li> 
+    </ul>
+{/define}
+
+{block head}
+<style type="text/css">
+#jmeno { width: 60% }
+.pacient { font-size: 180%; padding: 20px 0px; }
+</style> 
+<script type="text/javascript"> 
+$(function() {
+        $("#tabs").tabs();
+})
+</script>        
+{/block}
+
+{block content}
+<h2 class="float-right pacient"><a n:href="Pacient:view, $pacient->id">
+    {$pacient->titul_pred}
+    {$pacient->prijmeni} 
+    {$pacient->jmeno}
+    {$pacient->titul_za}
+    ({$pacient->id})
+</a></h2>
+
+<h2 id="jmeno" class="pacient"><img src="{$basePath}/images/navsteva.png"> {$navsteva->datum|date:'%H:%M, %A %d.%m.%Y'}</h2>
+
+<div id="tabs">
+    <ul>
+        <li><a href="#tabs-1">Návštěva</a></li>
+        <li><a href="#tabs-2">Zdrav. info</a></li>
+        <li><a href="#tabs-3">Diagnozy</a></li>
+        <li><a href="#tabs-4">Terapie</a></li>
+        <li><a href="#tabs-5">Laboratoř</a></li>
+        
+    </ul>
+    <div id="tabs-1">
+        <div class="float-right">
+            <a class="not ajax" title="Editovat návštěvu" n:href="editNavsteva!, $navsteva->id"><img src="{$basePath}/images/edit.png" /></a>
+            <a class="not" title="Vymazat návštěvu" n:href="deleteNavsteva, $navsteva->id"><img src="{$basePath}/images/delete.png" /></a>
+            <a class="not" title="Stáhnout DASTA" n:href="dasta, $navsteva->id"><img src="{$basePath}/images/download.png" /></a> 
+        </div>  
+        
+        <table id="navsteva" class="tabulka">
+          <tr><th>Pracoviště:</th><td>{$navsteva->pracoviste->nazev} ({$navsteva->pracoviste_id})</td></tr>
+          <tr class="even"><th>Oddělení:</th><td>{$navsteva->oddeleni->nazev} ({$navsteva->oddeleni_id|upper})</td></tr>
+          <tr><th>Číslo místnosti:</th><td>{$navsteva->cislo_mistnosti}</td></tr>
+        </table>
+        
+      <h3>Zaměstnanci <a class="not ajax" title="Přidat zaměstnance" n:href="addZamestnanec!"><img src="{$basePath}/images/add.png"></a></h3>
+      {if}<table id="zamestnanci" class="tabulka">
+      <tr><th></th><th>Zaměstnanec</th><th>Odbornost</th><th>Pracoviště</th><th>Oddělení</th></tr>
+      {foreach $navsteva->related('navsteva_has_zamestnanec') as $zamestnanec_id}
+      {var $zamestnanec = $zamestnanec_id->zamestnanec}
+      <tr n:class="$iterator->even ? even">     
+        <td><a class="not ajax" title="Oderat zaměstnance z návštšvy" n:href="deleteZamestnanec, $zamestnanec->id"><img src="{$basePath}/images/delete.png" /></a> </td>  
+        <td>
+           {$zamestnanec->titul_pred} 
+           {$zamestnanec->prijmeni} 
+           {$zamestnanec->jmeno}
+           {$zamestnanec->titul_za}
+        </td>
+        <td>{$zamestnanec->odbornost->nazev}</td>
+        <td>{$zamestnanec->pracoviste->nazev}</td>
+        <td>{$zamestnanec->oddeleni->nazev}</td>
+      </tr>      
+      {/foreach}
+      </table>{/if isset($zamestnanec)}
+    </div>
+    <div id="tabs-2">
+      {foreach $zdrav_info as $info}
+        <table id="info" class="tabulka">
+          {if $info->vyska}<tr><th>Výška:</th><td>{$info->vyska} cm</td></tr>{/if}
+          {if $info->vaha}<tr><th>Váha:</th><td>{$info->vaha} kg</td></tr>{/if}
+          {if $info->koureni_id}<tr><th>Kuřák:</th><td>{$info->koureni->nazev}</td></tr>{/if}
+          {if $info->alergie}<tr><th>Alergie:</th><td>{$info->alergie}</td></tr>{/if}
+          {if (($info->tlak_s)and($info->tlak_d))}<tr><th>Tlak:</th><td>{$info->tlak_s} / {$info->tlak_d} mmHg</td></tr>{/if}
+          {if $info->tep}<tr><th>Tep:</th><td>{$info->tep} / min</td></tr>{/if}
+          {if $info->teplota}<tr><th>Teplota:</th><td>{$info->teplota} °C</td></tr>{/if}
+          {if $info->tehotenstvi}<tr><th>Těhotenství:</th><td>{$info->tehotenstvi ? 'ano' : 'ne'}</td></tr>{/if}
+        </table>
+        {/foreach}
+    </div>    
+    <div id="tabs-3">
+      {if}
+      <table id="diagnozy" class="tabulka">
+      <tr><th></th><th>Diagnoza</th><th>Přístroj</th><th>Materiál</th><th>Komentář</th></tr>
+      {foreach $diagnozy as $diagnoza}
+      <tr n:class="$iterator->even ? even">
+          <td>  
+            <a class="not ajax" title="Editovat" n:href="editDiagnoza!, $diagnoza->id"><img src="{$basePath}/images/edit.png" /></a> 
+            <a class="not" title="Vymazat" n:href="deleteDiagnoza, $diagnoza->id, $id"><img src="{$basePath}/images/delete.png" /></a>
+          </td>      
+          <td>{$diagnoza->mkn10->nazev}</td>
+          <td>{$diagnoza->pristroj}</td>
+          <td>{$diagnoza->material}</td>
+          <td>{!$diagnoza->komentar|escape|nl2br}</td>
+      </tr>      
+      {/foreach}
+      </table>
+      {/if isset($diagnoza)}
+    </div>
+    <div id="tabs-4">
+      {if}
+      <table id="terapie" class="tabulka">
+      <tr><th></th><th>Terapie</th><th>Přístroj</th><th>Lečivo</th><th>Materiál</th><th>Komentář</th></tr>
+      {foreach $terapies as $terapie}
+      <tr n:class="$iterator->even ? even">
+          <td>  
+            <a class="not ajax" title="Editovat" n:href="editTerapie!, $terapie->id"><img src="{$basePath}/images/edit.png" /></a> 
+            <a class="not" title="Vymazat" n:href="Navsteva:deleteTerapie, $terapie->id, $id"><img src="{$basePath}/images/delete.png" /></a>
+          </td>      
+          <td>{$terapie->terapie}</td>
+          <td>{$terapie->pristroj}</td>
+          <td>{$terapie->lecivo}</td>
+          <td>{$terapie->material}</td>
+          <td>{!$terapie->komentar|escape|nl2br}</td>
+      </tr>      
+      {/foreach}
+      </table>
+      {/if isset($terapie)}
+    </div>
+    <div id="tabs-5">
+        {foreach $navsteva->related('laborator') as $laborator}
+        <p>{!$laborator->vysledky|escape|nl2br}</p>
+        {/foreach}
+    </div>
+</div>
+
+{snippet diagnozaForm}
+{if isset($showDiagnozaForm) or $presenter['diagnozaForm']->hasErrors()}
+<script type="text/javascript">
+$(function() {
+    $("#frmdiagnozaForm-diagnoza_name").autocomplete({
+        source: {link autocompletediagnoza},
+        minLength: 3,
+        select: function(event,ui) {
+            $('#frmdiagnozaForm-mkn10_id').attr('value',ui.item.id);
+        }
+    })
+    $("#snippet--diagnozaForm").dialog({ modal: true, width: 450, title: "Diagnoza" });
+});
+</script>
+{control diagnozaForm}
+{/if}
+{/snippet}
+
+{snippet terapieForm}
+{if isset($showTerapieForm) or $presenter['terapieForm']->hasErrors()}
+<script type="text/javascript">
+$(function() { $("#snippet--terapieForm").dialog({ modal: true, width: 450, title: "Terapie" })});
+</script>
+{control terapieForm}
+{/if}
+{/snippet}
+
+{snippet infoForm}
+{if isset($showInfoForm) or $presenter['infoForm']->hasErrors()}
+<script type="text/javascript">
+$(function() { $("#snippet--infoForm").dialog({ modal: true, width: 300, title: "Zdravotní informace" })});
+</script>
+{control infoForm}
+{/if}
+{/snippet}
+
+{snippet zamestnanecForm}
+{if isset($showZamestnanecForm) or $presenter['zamestnanecForm']->hasErrors()}
+<script type="text/javascript">
+$(function() { 
+    $("#frmzamestnanecForm-zamestnanec_name").autocomplete({
+        source: {link autocompletezamestnanec},
+        minLength: 3,
+        select: function(event,ui) {
+            $('#frmzamestnanecForm-zamestnanec_id').attr('value',ui.item.id);
+        }
+    })
+ 
+    .data("autocomplete")._renderItem = function( ul, item ) {
+			return $( "<li></li>" )
+				.data( "item.autocomplete", item )
+				.append( "<a>"+item.name +"<br>"+item.pracoviste+"<br>"+item.odbornost+ "</a>" )
+				.appendTo(ul);
+    }; 
+    
+    $("#snippet--zamestnanecForm").dialog({ modal: true, width: 400, title: "Přidat zaměstnance k návštěvě" })
+});
+</script>
+{control zamestnanecForm}
+{/if}
+{/snippet}
+
+{include #dialog}
+
+{/block}

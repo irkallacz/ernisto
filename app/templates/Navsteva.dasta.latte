@@ -1,0 +1,78 @@
+{contentType application/xml}
+<?xml version="1.0"?>
+<ds:dasta xmlns:ds="urn:cz-mzcr:ns:dasta:ds4:ds_dasta"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:dsip="urn:cz-mzcr:ns:dasta:ds4:ds_ip"
+	xsi:schemaLocation="urn:cz-mzcr:ns:dasta:ds4:ds_dasta http://ciselniky.dasta.mzcr.cz/xmlschema/ds_dasta-4.02.04.xsd urn:cz-mzcr:ns:dasta:ds4:ds_ip http://ciselniky.dasta.mzcr.cz/xmlschema/ds_ip-4.03.04.xsd"
+	id_soubor="MEDICALC_KK11115_2005-12-12T14:46:25" verze_ds="04.06.08" verze_nclp="02.36.01"
+	bin_priloha="T" ur="T" typ_odesm="KK" ozn_soub="11115" dat_vb="2008-06-13T14:46:25"
+	potvrzeni="P"> 
+	<ds:zdroj_is kod_firmy="MEDICALC" kod_prog="WMEXP" verze_prog="2.2.3.8"/>
+	<ds:pm> 
+		<ds:as typ="I" poradi="1"> 
+			<ds:vnitrni>999</ds:vnitrni> 
+		</ds:as> 
+	</ds:pm> 
+	    <ds:garant_dat id_garant="{$zamestnanec->id}" odbornost="801">{$zamestnanec->titul_pred} {$zamestnanec->prijmeni} {$zamestnanec->jmeno} {$zamestnanec->titul_za}</ds:garant_dat>     
+	<ds:is ico="12345678" icz="{$navsteva->pracoviste_id}" icp="44101882"> 
+		<ds:as typ="I"> 
+			<ds:vnitrni>801</ds:vnitrni> 
+		</ds:as> 
+		<dsip:ip id_pac="{$pacient->id}"> 
+			<dsip:rodcis>{$pacient->id}</dsip:rodcis> 
+			<dsip:jmeno>{$pacient->jmeno}</dsip:jmeno> 
+			<dsip:prijmeni>{$pacient->prijmeni}</dsip:prijmeni> 
+			<dsip:dat_dn format="D">{$pacient->date_born->format('Y-m-d')}</dsip:dat_dn> 
+			<dsip:sex>{$pacient->pohlavi ? 'F' : 'M'}</dsip:sex> 
+			<dsip:ku> 
+				<dsip:ku_z typku="AMBUL" fazespec="ZF" idku="MEDICALC.FNPL.1234567890">
+					
+					<dsip:dat_prov>{$navsteva->datum->format('Y-m-d\\TH:i')}</dsip:dat_prov> 
+					 
+					<dsip:p_pracoviste icz="{$navsteva->pracoviste_id}" icp="44101882" odb="501"> 
+						<dsip:nazev>{$navsteva->pracoviste->nazev}</dsip:nazev> 
+					</dsip:p_pracoviste>
+					
+					<dsip:text> 
+						<dsip:ptext xml:space="preserve"> 
+                                                {foreach $diagnozy as $diagnoza}
+                                                {$diagnoza->mkn10->nazev} ({$diagnoza->mkn10_id})
+                                                Přístroj: {$diagnoza->pristroj}
+                                                Materiál: {$diagnoza->material}
+                                                {!$diagnoza->komentar|escape|nl2br}
+                                                {sep}
+                                                
+                                                {/sep}
+                                                {/foreach}
+                                                
+                                                {foreach $terapies as $terapie}
+                                                {$terapie->terapie}
+                                                Léčivo: {$terapie->lecivo}
+                                                Přístroj: {$terapie->pristroj}
+                                                Materiál: {$terapie->material}
+                                                {!$terapie->komentar|escape|nl2br}
+                                                {sep}
+                                                
+                                                {/sep}
+                                                {/foreach}                                                
+						</dsip:ptext> 
+					</dsip:text> 
+					
+					<dsip:dg_vys typ_dg="P" ind_oprav_sd="N"> 
+						{foreach $diagnozy as $diagnoza}
+                                                <dsip:diag poradi="{$iterator->counter}">{$diagnoza->mkn10_id}</dsip:diag> 
+                                                {/foreach}
+					</dsip:dg_vys>
+					
+					<dsip:auzku indikace="I" typpol_vz="V" diag="{$diagnozy->fetch()->mkn10_id}"> 
+						<dsip:dat_du typ="A">{$navsteva->datum->format('Y-m-d\\TH:i')}</dsip:dat_du> 
+						<dsip:vykon kod_vykonu="51012" pocet="1" uctujici="O"/> 
+						<dsip:p_pracoviste icz="{$navsteva->pracoviste_id}" icp="44101882" odb="501"> 
+							<dsip:nazev>{$navsteva->pracoviste->nazev}</dsip:nazev> 
+						</dsip:p_pracoviste> 
+					</dsip:auzku> 
+				</dsip:ku_z> 
+			</dsip:ku> 
+		</dsip:ip> 
+	</ds:is> 
+</ds:dasta> 

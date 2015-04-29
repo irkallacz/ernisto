@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.6.1" />
+
+	<title>Class Model | ErNISTo</title>
+
+	<script type="text/javascript" src="resources/combined.js?144019575"></script>
+	<script type="text/javascript" src="elementlist.js?3389213968"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?1532301413" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li class="active"><a href="namespace-None.html">None</a>
+						</li>
+				<li><a href="namespace-PHP.html">PHP</a>
+						</li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-BasePresenter.html">BasePresenter</a></li>
+				<li><a href="class-CekarnaPresenter.html">CekarnaPresenter</a></li>
+				<li><a href="class-ErrorPresenter.html">ErrorPresenter</a></li>
+				<li class="active"><a href="class-Model.html">Model</a></li>
+				<li><a href="class-NavstevaPresenter.html">NavstevaPresenter</a></li>
+				<li><a href="class-PacientPresenter.html">PacientPresenter</a></li>
+				<li><a href="class-SignPresenter.html">SignPresenter</a></li>
+			</ul>
+
+
+
+
+
+			<h3>Functions</h3>
+			<ul>
+				<li><a href="function-callback.html">callback</a></li>
+				<li><a href="function-dump.html">dump</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-None.html" title="Summary of None"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class Model</h1>
+
+
+	<div class="description">
+	
+<p>Model je základní službou (services) pro přístup k databázi. Využívá
+autowritingu pro inicializaci a většina jeho metod vrací instanci
+Nette\Database\Table\ActiveRow zapouzdřující jeden řádek z tabulky nebo
+Nette\Database\Table\Selection pro více řádků.</p>
+
+	</div>
+
+	<dl class="tree">
+		<dd style="padding-left:0px">
+Nette\Object
+			
+			
+		</dd>
+		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by" />
+<b><span>Model</span></b>			
+			
+			
+		</dd>
+	</dl>
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		
+		
+
+				<b>Author:</b>
+				Jakub Mottl<br />
+		<b>Located at</b> <a href="source-class-Model.html#8" title="Go to source code">model/Model.php</a><br />
+	</div>
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-Model.html#21" title="Go to source code">__construct</a>( <span>Nette\Database\Connection <var>$database</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getSelectArray" id="_getSelectArray">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getSelectArray">#</a>
+		<code><a href="source-class-Model.html#27" title="Go to source code">getSelectArray</a>( <span>string <var>$table</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Vrací pole ($id =&gt; $value) z tabulky $table pro SelectBox seřazené
+abecedně</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Vrací pole ($id =&gt; $value) z tabulky $table pro SelectBox seřazené
+abecedně</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$table</var></dt>
+					<dd><code>string</code><br>Název tabulky</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getNavsteva" id="_getNavsteva">
+
+		<td class="attributes"><code>
+			 public 
+			Nette\Database\Table\ActiveRow
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getNavsteva">#</a>
+		<code><a href="source-class-Model.html#36" title="Go to source code">getNavsteva</a>( <span>integer <var>$id</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Vrací návštěvu podle jejího ID</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Vrací návštěvu podle jejího ID</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>integer</code><br>ID návštevy</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Nette\Database\Table\ActiveRow</code><br />
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getNavstevaByDate" id="_getNavstevaByDate">
+
+		<td class="attributes"><code>
+			 public 
+			Nette\Database\Table\Selection|null
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getNavstevaByDate">#</a>
+		<code><a href="source-class-Model.html#45" title="Go to source code">getNavstevaByDate</a>( <span>Datetime <var>$date</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Vrací seznam návštěv, které odpovídají zadanému datu.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Vrací seznam návštěv, které odpovídají zadanému datu.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$date</var></dt>
+					<dd><code>Datetime</code><br>Datum podle kterého se mají vybrat návštevy</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Nette\Database\Table\Selection|null</code><br />
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getNavstevaByPacient" id="_getNavstevaByPacient">
+
+		<td class="attributes"><code>
+			 public 
+			Nette\Database\Table\Selection|null
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getNavstevaByPacient">#</a>
+		<code><a href="source-class-Model.html#56" title="Go to source code">getNavstevaByPacient</a>( <span>integer <var>$id</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Vrací seznam všech návštěv pacienta podle jeho ID</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Vrací seznam všech návštěv pacienta podle jeho ID</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>integer</code><br>ID pacienta</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Nette\Database\Table\Selection|null</code><br />
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getNavstevaByTerm" id="_getNavstevaByTerm">
+
+		<td class="attributes"><code>
+			 public 
+			Nette\Database\Table\Selection
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getNavstevaByTerm">#</a>
+		<code><a href="source-class-Model.html#65" title="Go to source code">getNavstevaByTerm</a>( <span>string <var>$term</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Vrací všechny návštevy, které vyhovují zadanému řetězci</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Vrací všechny návštevy, které vyhovují zadanému řetězci</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$term</var></dt>
+					<dd><code>string</code><br>Hledaný řetězec</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Nette\Database\Table\Selection</code><br />
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="addNavsteva" id="_addNavsteva">
+
+		<td class="attributes"><code>
+			 public 
+			Nette\Database\Table\ActiveRow
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_addNavsteva">#</a>
+		<code><a href="source-class-Model.html#77" title="Go to source code">addNavsteva</a>( <span>array <var>$values</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Vloží novou návštěvu do tabulky a vrátí nový řádek</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Vloží novou návštěvu do tabulky a vrátí nový řádek</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$values</var></dt>
+					<dd><code>array</code><br>Pole hodnot array($column =&gt; $value)</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Nette\Database\Table\ActiveRow</code><br />
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getDiagnoza" id="_getDiagnoza">
+
+		<td class="attributes"><code>
+			 public 
+			Nette\Database\Table\ActiveRow
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getDiagnoza">#</a>
+		<code><a href="source-class-Model.html#86" title="Go to source code">getDiagnoza</a>( <span>integer <var>$id</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Vrací diagnozu podle jejího ID</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Vrací diagnozu podle jejího ID</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>integer</code><br>ID diagnozy</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Nette\Database\Table\ActiveRow</code><br />
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="addDiagnoza" id="_addDiagnoza">
+
+		<td class="attributes"><code>
+			 public 
+			Nette\Database\Table\ActiveRow
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_addDiagnoza">#</a>
+		<code><a href="source-class-Model.html#95" title="Go to source code">addDiagnoza</a>( <span>array <var>$values</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Vloží novou diagnozu do tabulky a vrátí nový řádek</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Vloží novou diagnozu do tabulky a vrátí nový řádek</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$values</var></dt>
+					<dd><code>array</code><br>Pole hodnot array($column =&gt; $value)</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Nette\Database\Table\ActiveRow</code><br />
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getDiagnozaByTerm" id="_getDiagnozaByTerm">
+
+		<td class="attributes"><code>
+			 public 
+			Nette\Database\Table\Selection
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getDiagnozaByTerm">#</a>
+		<code><a href="source-class-Model.html#104" title="Go to source code">getDiagnozaByTerm</a>( <span>string <var>$term</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Vrací všechny diagnozy, které vyhovují zadanému řetězci</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Vrací všechny diagnozy, které vyhovují zadanému řetězci</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$term</var></dt>
+					<dd><code>string</code><br>Hledaný řetězec</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Nette\Database\Table\Selection</code><br />
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getTerapie" id="_getTerapie">
+
+		<td class="attributes"><code>
+			 public 
+			Nette\Database\Table\ActiveRow
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getTerapie">#</a>
+		<code><a href="source-class-Model.html#113" title="Go to source code">getTerapie</a>( <span>integer <var>$id</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Vrací diagnozu podle jejího ID</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Vrací diagnozu podle jejího ID</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>integer</code><br>ID diagnozy</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Nette\Database\Table\ActiveRow</code><br />
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="addTerapie" id="_addTerapie">
+
+		<td class="attributes"><code>
+			 public 
+			Nette\Database\Table\ActiveRow
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_addTerapie">#</a>
+		<code><a href="source-class-Model.html#122" title="Go to source code">addTerapie</a>( <span>array <var>$values</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Vloží novou terapii do tabulky a vrátí nový řádek</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Vloží novou terapii do tabulky a vrátí nový řádek</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$values</var></dt>
+					<dd><code>array</code><br>Pole hodnot array($column =&gt; $value)</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Nette\Database\Table\ActiveRow</code><br />
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getInfoByNavsteva" id="_getInfoByNavsteva">
+
+		<td class="attributes"><code>
+			 public 
+			Nette\Database\Table\Selection|null
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getInfoByNavsteva">#</a>
+		<code><a href="source-class-Model.html#131" title="Go to source code">getInfoByNavsteva</a>( <span>integer <var>$id</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Vrací seznam zdrav. informací podle ID návštěvy</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Vrací seznam zdrav. informací podle ID návštěvy</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>integer</code><br>ID pacienta</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Nette\Database\Table\Selection|null</code><br />
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="addInfo" id="_addInfo">
+
+		<td class="attributes"><code>
+			 public 
+			Nette\Database\Table\ActiveRow
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_addInfo">#</a>
+		<code><a href="source-class-Model.html#140" title="Go to source code">addInfo</a>( <span>array <var>$values</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Vloží nové zdrav. info do tabulky a vrátí nový řádek</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Vloží nové zdrav. info do tabulky a vrátí nový řádek</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$values</var></dt>
+					<dd><code>array</code><br>Pole hodnot array($column =&gt; $value)</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Nette\Database\Table\ActiveRow</code><br />
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getPacient" id="_getPacient">
+
+		<td class="attributes"><code>
+			 public 
+			Nette\Database\Table\ActiveRow|null
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getPacient">#</a>
+		<code><a href="source-class-Model.html#149" title="Go to source code">getPacient</a>( <span>integer <var>$id</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Vrací pacienta podle jejího ID</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Vrací pacienta podle jejího ID</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>integer</code><br>ID Pacienta</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Nette\Database\Table\ActiveRow|null</code><br />
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getPacientByTerm" id="_getPacientByTerm">
+
+		<td class="attributes"><code>
+			 public 
+			Nette\Database\Table\Selection|null
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getPacientByTerm">#</a>
+		<code><a href="source-class-Model.html#158" title="Go to source code">getPacientByTerm</a>( <span>string <var>$term</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Vrací všechny pacienty, které vyhovují zadanému řetězci</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Vrací všechny pacienty, které vyhovují zadanému řetězci</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$term</var></dt>
+					<dd><code>string</code><br>Hledaný řetězec</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Nette\Database\Table\Selection|null</code><br />
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="addPacient" id="_addPacient">
+
+		<td class="attributes"><code>
+			 public 
+			Nette\Database\Table\ActiveRow
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_addPacient">#</a>
+		<code><a href="source-class-Model.html#170" title="Go to source code">addPacient</a>( <span>array <var>$values</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Vloží nového pacienta do tabulky a vrátí nový řádek</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Vloží nového pacienta do tabulky a vrátí nový řádek</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$values</var></dt>
+					<dd><code>array</code><br>Pole hodnot array($column =&gt; $value)</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Nette\Database\Table\ActiveRow</code><br />
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="addZamestnanec" id="_addZamestnanec">
+
+		<td class="attributes"><code>
+			 public 
+			Nette\Database\Table\ActiveRow
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_addZamestnanec">#</a>
+		<code><a href="source-class-Model.html#179" title="Go to source code">addZamestnanec</a>( <span>integer <var>$zamestnanec_id</var></span>, <span>integer <var>$navsteva_id</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Připojí zaměstnance k návštěve</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Připojí zaměstnance k návštěve</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$zamestnanec_id</var></dt>
+					<dd><code>integer</code><br>ID Návštěvy</dd>
+					<dt><var>$navsteva_id</var></dt>
+					<dd><code>integer</code><br>ID Návštěvy</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Nette\Database\Table\ActiveRow</code><br />
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="deleteZamestnanec" id="_deleteZamestnanec">
+
+		<td class="attributes"><code>
+			 public 
+			Nette\Database\Table\ActiveRow
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_deleteZamestnanec">#</a>
+		<code><a href="source-class-Model.html#190" title="Go to source code">deleteZamestnanec</a>( <span>integer <var>$zamestnanec_id</var></span>, <span>integer <var>$navsteva_id</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Odebere zaměstnance od návštěvy</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Odebere zaměstnance od návštěvy</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$zamestnanec_id</var></dt>
+					<dd><code>integer</code><br>ID Návštěvy</dd>
+					<dt><var>$navsteva_id</var></dt>
+					<dd><code>integer</code><br>ID Návštěvy</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Nette\Database\Table\ActiveRow</code><br />
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getZamestnanecByTerm" id="_getZamestnanecByTerm">
+
+		<td class="attributes"><code>
+			 public 
+			Nette\Database\Table\Selection|null
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getZamestnanecByTerm">#</a>
+		<code><a href="source-class-Model.html#201" title="Go to source code">getZamestnanecByTerm</a>( <span>string <var>$term</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Vrací všechny zaměstnance, kteří vyhovují zadanému řetězci</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Vrací všechny zaměstnance, kteří vyhovují zadanému řetězci</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$term</var></dt>
+					<dd><code>string</code><br>Hledaný řetězec</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Nette\Database\Table\Selection|null</code><br />
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+	<table class="summary inherited">
+	<caption>Methods inherited from Nette\Object</caption>
+	<tr>
+		<td><code>
+__call(), 
+__callStatic(), 
+__get(), 
+__isset(), 
+__set(), 
+__unset(), 
+extensionMethod(), 
+getReflection()
+		</code></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+	<table class="summary" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="database" id="$database">
+
+		<td class="attributes"><code>
+			public 
+			Nette\Database\Connection
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Model.html#18" title="Go to source code"><var>$database</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$database" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+</div>
+
+	<div id="footer">
+		ErNISTo API documentation generated by <a href="http://apigen.org">ApiGen 2.6.1</a>
+	</div>
+</div>
+</div>
+</body>
+</html>
