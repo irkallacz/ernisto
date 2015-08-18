@@ -5,13 +5,13 @@ Tento soubor je součástí semestrálního projektu ErNISTo z předmětu A6M33L
 
 Úkolem bylo vytvořit prototyp informačního systému pro zdravotnické zařízení. Měl se jednat o objektově orientovaný, komentovaný a dokumentovaný kód. 
 
-Podobný popis projektu můžete najít ve [zprávě (ernisto.pdf)](https://github.com/irkallacz/ernisto/master/ernisto.pdf) 
+Podobný popis projektu můžete najít ve [zprávě (ernisto.pdf)](https://github.com/irkallacz/ernisto/blob/master/ernisto.pdf) 
 
 Aplikace byla vytvořena pomocí [Nette frameforku](https://github.com/nette/nette)
 
 Instalace 
 ---------
-Stáhněte si soubory projektu a do databáze importujte soubor [ernisto.sql](https://github.com/irkallacz/ernisto/master/ernisto.sql)
+Stáhněte si soubory projektu a do databáze importujte soubor [ernisto.sql](https://github.com/irkallacz/ernisto/blob/master/ernisto.sql)
 
 Demo
 ----
